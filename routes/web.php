@@ -7,9 +7,13 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\FullCalenderController;
 
 Route::get('/', function () { return view('welcome'); });
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/courses', [DashboardController::class, 'showCourses'])->name('dashboard.courses');
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/practice',[PracticeController::class, 'index'])->name('practice');
 
@@ -27,9 +31,14 @@ Route::middleware('auth')->group(function () {
 
 
 //Route::get('notification', 'HomeController@notification');
-//Route::get('/notification',function(){return view('notification'); });
+Route::get('/notification',function(){return view('notification'); });
 
 
+
+Route::controller(FullCalenderController::class)->group(function(){
+    Route::get('fullcalender', 'index');
+    Route::post('fullcalenderAjax', 'ajax');
+});
 
 
 Route::get('image-upload', [ImageController::class, 'index']);

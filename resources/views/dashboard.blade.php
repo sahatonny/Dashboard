@@ -66,7 +66,7 @@
                                 <small class="text-muted">Due: {{ $exam['due_date'] }}</small>
                             </div>
                             <div>
-                                <a href="" class="btn btn-outline-info">View Details</a>
+                                <a href="#" class="btn btn-outline-info">View Details</a>
                             </div>
                         </li>
                     @endforeach

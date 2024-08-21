@@ -33,4 +33,15 @@ class DashboardController extends Controller
 
         return view('dashboard', compact('courses', 'exams', 'grades', 'announcements'));
     }
+
+
+    public function showCourses() {
+        $userId = auth()->id();
+        $courses = Enrollment::where('student_id', $userId)
+                    ->with('course')
+                    ->get();
+
+        return view('dashboard.courses', compact('courses'));
+    }
+
 }

@@ -12,10 +12,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
         body {
     font-family: Arial, sans-serif;
@@ -31,7 +33,8 @@
     text-align: center;
 }
 
-    nav  {
+
+nav  {
         color: #ee8484;
 }
 
@@ -53,12 +56,37 @@
     color: #fff;
     text-decoration: none;
 }
-.progress {
-    background-color: #CCE5FF;
-    height: 10px;
+
+
+aside {
+    width: 250px;
+    padding: 1rem;
+    background-color: #e9edf0;
+    color: #f3ebeb;
+    height: 100vh;
 }
 
+aside .profile img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
 
+aside ul {
+    list-style: none;
+    background-color: #e9eef3;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 1rem 0;
+
+}
+
+aside ul li a {
+    color: #fff;
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -134,20 +162,29 @@
                         <a class="nav-link" href="#">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Notifications</a>
+                        <a class="nav-link" href="/notification">Notifications</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Settings</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/image-upload">Image</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/fullcalender">Calender</a>
+                    </li>
                 </ul>
+
             </aside>
+
 
 
             <main class="col-md-9 col-lg-10 p-4">
 
-                <div class="container">
+             <div class="container">
+
                     <h3 class="text-center mt-4">Exam Results Overview</h3>
-                    <div id="donut-chart"> </div>
+                    <div id="donut-chart" height="65"> </div>
                         <script>
                             let chart = bb.generate({
                             data: {
@@ -174,8 +211,58 @@
                             bindto: "#donut-chart",
                             });
                         </script>
-                        <h6 class="text-center" >This is your test score percentage till now.</h6>
+                        <h6 class="text-center"  style="color: #5a5a5a; font-weight: bold; font-size: 16px; margin-bottom: 20px;">This is your test score percentage till now.</h6>
                     </div>
+                    <div>
+                        <h3 class="text-center mt-4">Total Score Overview</h3>
+                        <canvas id="myBarChart" height="65"></canvas>
+                        <script>
+                            new Chart(document.getElementById('myBarChart').getContext('2d'), {
+                                type: 'bar',
+                                data: {
+                                    labels: ['January', 'February', 'March', 'April','May'],
+                                    datasets: [{
+                                        label: 'Score 2024',
+                                        data: [30, 70, 80, 60, 90],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.1)',
+                                            'rgba(54, 162, 235, 0.1)',
+                                            'rgba(255, 206, 86, 0.1)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: { beginAtZero: true }
+                                    }
+                                }
+                            });
+                        </script>
+                        <h6 class="text-center" style="color: #5a5a5a; font-weight: bold; font-size: 16px; margin-bottom: 20px;">
+                            This is your total score by month till now.
+                        </h6>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
 
 
 
