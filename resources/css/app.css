@@ -57,6 +57,16 @@ aside ul li {
     margin: 1rem 0;
 
 }
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
 
 aside ul li a {
     color: #fff;

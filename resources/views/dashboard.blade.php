@@ -53,6 +53,10 @@
 
 
 
+
+
+
+
     <section class="exams mb-5">
         <h2 class="mb-4 text-left">Upcoming Exams</h2>
         <div class="card">
@@ -175,6 +179,24 @@
             </div>
         </div>
     </section>
+    <section class="questions">
+        <div class="card shadow-sm" style="max-width: 500px; width: 100%;">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Submit Your Question</h2>
+                <form action="#" method="POST">
+                    <div class="form-group mb-4">
+                        <label for="question" class="form-label">Your Question:</label>
+                        <textarea id="question" name="question" rows="6" class="form-control" placeholder="Type your question here..."></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+    </section>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
 
 
 
