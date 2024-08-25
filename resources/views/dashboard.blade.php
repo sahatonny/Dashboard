@@ -16,6 +16,19 @@
         .modal-content {
             margin-top: 100px;    /* Adjust this value as needed */
         }
+
+        .flex-container {
+            display: flex;
+        }
+
+        .flex-child {
+            flex: 1;
+            border: 2px solid #FCF2F2;
+        }
+
+        .flex-child:first-child {
+            margin-right: 20px;
+        }
     </style>
 
 
@@ -46,17 +59,6 @@
             welcomeModal.show();
         });
     </script>
-
-
-
-
-
-
-
-
-
-
-
     <section class="exams mb-5">
         <h2 class="mb-4 text-left">Upcoming Exams</h2>
         <div class="card">
@@ -81,11 +83,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
     <!-- Courses Section -->
     <section class="courses mb-5">
         <h2 class="mb-4">Your Courses</h2>
@@ -134,6 +131,7 @@
           },
         });
   </script>
+
     <!-- Grades Section -->
     <section class="grades mb-5">
         <h2 class="mb-4 text-left">Recent Grades</h2>
@@ -179,21 +177,51 @@
             </div>
         </div>
     </section>
-    <section class="questions">
-        <div class="card shadow-sm" style="max-width: 500px; width: 100%;">
-            <div class="card-body">
-                <h2 class="card-title mb-4">Submit Your Question</h2>
-                <form action="#" method="POST">
-                    <div class="form-group mb-4">
-                        <label for="question" class="form-label">Your Question:</label>
-                        <textarea id="question" name="question" rows="6" class="form-control" placeholder="Type your question here..."></textarea>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
+
+
+
+
+<div class="flex-container">
+    <div class="flex-child 1">
+        <section class="questions">
+            <div class="card shadow-sm" style="max-width: 500px; width: 100%; border-radius: 10px; overflow: hidden;">
+                <div class="card-body p-4">
+                    <h2 class="card-title mb-4 text-center">Submit Your Question</h2>
+                    <form action="#" method="POST">
+                        <div class="form-group mb-4">
+                            <label for="question" class="form-label" style="font-weight: bold;">Your Question:</label>
+                            <textarea id="question" name="question" rows="6" class="form-control" placeholder="Type your question here..." style="border-radius: 8px; border: 1px solid #ced4da;"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-info" style="background-color: #9cc4f0; border-color: #3f8bdb; border-radius: 8px;">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-    </section>
+        </section>
+    </div>
+    <div class="flex-child 2">
+        <section class="feedback">
+            <div class="card shadow-sm" style="max-width: 500px; width: 100%; border-radius: 10px; overflow: hidden;">
+                <div class="card-body p-4">
+                    <h2 class="card-title mb-4 text-center">Submit Your Feedback</h2>
+                    <form action="#" method="POST">
+                        <div class="form-group mb-4">
+                            <label for="feedback" class="form-label" style="font-weight: bold">Your Feedback</label>
+                            <textarea name="feedback" id="feedback" rows="6" class="form-control" placeholder="Type your feedback...." style="border-radius: 8px; border: 1px solid #ced4da"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-info" style="background-color: #9cc4f0; border-radius: 8px">Submit</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
 
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">

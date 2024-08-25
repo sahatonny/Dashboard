@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -17,76 +17,87 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 
 <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #FCF2F2;
-}
+                        body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #FCF2F2;
+                }
 
-    header {
-    background-color: #fff;
-    padding: 1rem;
-    color: #fff;
-    text-align: center;
-}
-
-
-nav  {
-        color: #ee8484;
-}
-
-    header nav ul {
-    list-style: none;
-    background-color: #fff;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-}
-
-    header nav ul li {
-    margin: 0 1rem;
-    color: #fff;
-}
-
-    header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
+                    header {
+                    background-color: #fff;
+                    padding: 1rem;
+                    color: #fff;
+                    text-align: center;
+                }
 
 
-aside {
-    width: 250px;
-    padding: 1rem;
-    background-color: #e9edf0;
-    color: #f3ebeb;
-    height: 100vh;
-}
+                nav  {
+                        color: #ee8484;
+                }
 
-aside .profile img {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-}
+                    header nav ul {
+                    list-style: none;
+                    background-color: #fff;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                }
 
-aside ul {
-    list-style: none;
-    background-color: #e9eef3;
-    padding: 0;
-}
+                    header nav ul li {
+                    margin: 0 1rem;
+                    color: #fff;
+                }
 
-aside ul li {
-    margin: 1rem 0;
+                    header nav ul li a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+                .sidebar {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 200px;
+                    height: 100%;
+                    background-color: #f4f4f4;
+                    padding: 15px;
+                    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                }
 
-}
+                aside {
+                    width: 250px;
+                    padding: 1rem;
+                    background-color: #e9edf0;
+                    color: #f3ebeb;
+                    height: 100vh;
+                }
 
-aside ul li a {
-    color: #fff;
-    text-decoration: none;
-}
+                aside .profile img {
+                    border-radius: 50%;
+                    width: 100px;
+                    height: 100px;
+                }
+
+                aside ul {
+                    list-style: none;
+                    background-color: #e9eef3;
+                    padding: 0;
+                }
+
+                aside ul li {
+                    margin: 1rem 0;
+
+                }
+
+                aside ul li a {
+                    color: #fff;
+                    text-decoration: none;
+                }
 </style>
 </head>
 <body>
@@ -124,9 +135,7 @@ aside ul li a {
                     </ul>
                 </div>
             </div>
-        </nav>
-
-    </header>
+        </nav></header>
 
 
 
@@ -134,17 +143,14 @@ aside ul li a {
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <aside class="col-md-3 col-lg-2 p-3">
+            <aside class="col-md-4 col-lg-2 p-4">
                 <div class="profile text-center mb-4">
                     <img src="images/girl.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-2">
-                    <h3>{{ auth()->user()->name }}</h3>
+                    <h3>Hello, {{ auth()->user()->name }}!</h3>
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('dashboard') }}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Subscription</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">My Courses</a>
@@ -162,29 +168,25 @@ aside ul li a {
                         <a class="nav-link" href="#">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/notification">Notifications</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#">Settings</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/image-upload">Image</a>
-                    </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="/fullcalender">Calender</a>
-                    </li>
+                    </li>-->
+
                 </ul>
+
 
             </aside>
 
 
 
-            <main class="col-md-9 col-lg-10 p-4">
+            <main class="col-md-10 col-lg-10 p-4">
 
-             <div class="container">
+            <div class="flex" width="100" >
 
                     <h3 class="text-center mt-4">Exam Results Overview</h3>
-                    <div id="donut-chart" height="65"> </div>
+                    <div id="donut-chart" class="flex" height="65"> </div>
                         <script>
                             let chart = bb.generate({
                             data: {
@@ -212,8 +214,8 @@ aside ul li a {
                             });
                         </script>
                         <h6 class="text-center"  style="color: #5a5a5a; font-weight: bold; font-size: 16px; margin-bottom: 20px;">This is your test score percentage till now.</h6>
-                    </div>
-                    <div>
+            </div>
+            <div class="flex" width="100">
                         <h3 class="text-center mt-4">Total Score Overview</h3>
                         <canvas id="myBarChart" height="65"></canvas>
                         <script>
@@ -248,21 +250,156 @@ aside ul li a {
                                 }
                             });
                         </script>
+            </div>
                         <h6 class="text-center" style="color: #5a5a5a; font-weight: bold; font-size: 16px; margin-bottom: 20px;">
                             This is your total score by month till now.
                         </h6>
 
+            <div class="flex" width="100">
+                    <div>
+                        <canvas id="myHorizontalBarChart" width="400" height="100"></canvas>
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var ctx = document.getElementById('myHorizontalBarChart').getContext('2d');
+                            var myHorizontalBarChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                    datasets: [{
+                                        label: 'Sales',
+                                        data: [65, 59, 80, 81, 56, 55, 40],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)', // January
+                                            'rgba(54, 162, 235, 0.2)', // February
+                                            'rgba(255, 206, 86, 0.2)', // March
+                                            'rgba(75, 192, 192, 0.2)', // April
+                                            'rgba(153, 102, 255, 0.2)', // May
+                                            'rgba(255, 159, 64, 0.2)', // June
+                                            'rgba(199, 199, 199, 0.2)'  // July
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)', // January
+                                            'rgba(54, 162, 235, 1)', // February
+                                            'rgba(255, 206, 86, 1)', // March
+                                            'rgba(75, 192, 192, 1)', // April
+                                            'rgba(153, 102, 255, 1)', // May
+                                            'rgba(255, 159, 64, 1)', // June
+                                            'rgba(199, 199, 199, 1)'  // July
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    indexAxis: 'y', // This makes the chart horizontal
+                                    scales: {
+                                        x: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+            </div>
 
+
+            <div class="flex" width="100">
+
+
+                    <div>
+                        <canvas id="myHorizontalBarChart" width="400" height="80"></canvas>
+                    </div>
+                    <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                             var ctx = document.getElementById('myHorizontalBarChartWithNegatives').getContext('2d');
+                            var myHorizontalBarChartWithNegatives = new Chart(ctx, {
+                             type: 'bar',
+                             data: {
+                             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                             datasets: [{
+                             label: 'Net Profit',
+                             data: [65, -59, 80, -81, 56, 55, -40], // Include negative values
+                             backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', // January
+                        'rgba(54, 162, 235, 0.2)', // February
+                        'rgba(255, 206, 86, 0.2)', // March
+                        'rgba(75, 192, 192, 0.2)', // April
+                        'rgba(153, 102, 255, 0.2)', // May
+                        'rgba(255, 159, 64, 0.2)', // June
+                        'rgba(199, 199, 199, 0.2)'  // July
+                     ],
+                        borderColor: [
+                        'rgba(255, 99, 132, 1)', // January
+                        'rgba(54, 162, 235, 1)', // February
+                        'rgba(255, 206, 86, 1)', // March
+                        'rgba(75, 192, 192, 1)', // April
+                        'rgba(153, 102, 255, 1)', // May
+                        'rgba(255, 159, 64, 1)', // June
+                        'rgba(199, 199, 199, 1)'  // July
+                        ],
+                     borderWidth: 1
+                     }]
+                     },
+                        options: {
+                         indexAxis: 'y', // This makes the chart horizontal
+                        scales: {
+                          x: {
+                        beginAtZero: true, // Ensures that the x-axis starts at zero
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return value + ' units'; // Adds 'units' to each tick label (optional)
+                                 }
+                                 }
+                               }
+                              }
+                             }
+                             });
+                                });
+                    </script>
                 </div>
 
+                <div class="flex" width="100">
+                    <div >
+                    <canvas id="examChart" width="800" height="100"></canvas>
+                    </div>
+                        <script>
+                        const ctx = document.getElementById('examChart').getContext('2d');
+                        const examChart = new Chart(ctx, {
+                          type: 'line',
+                              data: {
+                          labels: ['Bangla(35)','English(35)','Math(40)', 'Science(15)', 'GK(50)', 'ICT(15)', 'Geography(10)'],
+                           datasets: [
+                             {
+                                label: 'Previous Exam',
+                                data: [25, 35, 30, 2, 45, 6, 8],
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderWidth: 1,
+                                        },
+                                        {
+                                            label: 'Recent Exam',
+                                            data: [30, 20, 35, 14, 29, 12, 6],
+                                            borderColor: 'rgba(255, 99, 132, 1)',
+                                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                            borderWidth: 1,
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    scales: {
+                                        x: {
+                                            beginAtZero: true
+                                        },
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
 
-
-
-
-
-
-
-
+                            });
+                            </script>
+                </div>
 
 
 
@@ -277,5 +414,7 @@ aside ul li a {
         <p>&copy; 2024 LMS Platform. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ mix('js/chart.js') }}"></script>
+
 </body>
 </html>

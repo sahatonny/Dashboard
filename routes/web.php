@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FullCalenderController;
+use App\Http\Controllers\ExamController;
+
 
 Route::get('/', function () { return view('welcome'); });
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -43,3 +45,7 @@ Route::controller(FullCalenderController::class)->group(function(){
 
 Route::get('image-upload', [ImageController::class, 'index']);
 Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');
+
+
+
+Route::get('/exam-chart', [ExamController::class, 'index']);
