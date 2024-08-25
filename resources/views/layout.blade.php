@@ -18,6 +18,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 <style>
@@ -400,6 +404,100 @@
                             });
                             </script>
                 </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <canvas id = "gradesDonutChart">  </canvas>
+
+    <script>
+        // Pass PHP data to JavaScript
+        const gradeLabels = @json(array_column($grades, 'course'));
+        const gradeData = @json(array_column($grades, 'grade'));
+
+        // Convert grades to numeric values for chart
+        const gradeValueMap = {
+            'A': 4,
+            'B': 3,
+            'C': 2,
+            'D': 1,
+            'F': 0
+        };
+
+        const numericGrades = gradeData.map(grade => gradeValueMap[grade]);
+
+        // Setup the donut chart
+        const ctx = document.getElementById('gradesDonutChart').getContext('2d');
+        const gradesDonutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: gradeLabels,
+                datasets: [{
+                    label: 'Grades',
+                    data: numericGrades,
+                    backgroundColor: [
+                        '#4CAF50', // Green for A
+                        '#2196F3', // Blue for B
+                        '#FFC107', // Amber for C
+                        '#FF5722', // Deep Orange for D
+                        '#F44336'  // Red for F
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                }
+            }
+        });
+    </script>
+
+
+
+
+
+
+              {{--  <div class="flex" style="width: 100%;">
+                    <canvas id="foodChart" width="800" height="400"></canvas>
+                  </div>
+
+                  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                  <script>
+                  const ctx = document.getElementById("foodChart").getContext('2d');
+                  const myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                      labels: ["rice", "yam", "tomato", "potato", "beans", "maize", "oil"],
+                      datasets: [{
+                        label: 'Food Items',
+                        backgroundColor: 'rgba(161, 198, 247, 1)',
+                        borderColor: 'rgb(47, 128, 237)',
+                        data: [300, 400, 200, 500, 800, 900, 200],
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true,
+                        }
+                      },
+                      responsive: true, // Makes the chart responsive
+                      maintainAspectRatio: false // Ensures the height and width are respected
+                    },
+                  });
+                  </script>--}}
+
+
+
+
 
 
 

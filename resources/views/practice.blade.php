@@ -20,8 +20,29 @@
   <script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"> </script>
   <title>Practice</title>
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('app.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+
+
+
+
+
 </head>
-<style>
+{{--<style>
   .chart-container {
     width: 50%;
     height: 50%;
@@ -32,16 +53,367 @@
     display: flex;
   }
 </style>
+--}}
+
+{{--<style>
+    /*FOR  3D BARS*/
+* {
+   list-style: none;
+   margin: 0;
+   font-family: var(--font);
+}
+
+body {
+   background: #f1f0f0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.container {
+   position: relative;
+   width: 700px;
+   height: 600px;
+   background: var(--container-background);
+   border: 1px solid var(--container-border) !important;
+   border-top: none;
+   border-right: none;
+   margin-top: 100px;
+   z-index: 0;
+   border-radius: 2vh;
+   box-shadow: inset -0px 2px 2px #bbb, inset -2px -2px 2px #111111;
+}
+
+#v-meter {
+   position: relative;
+   top: 0px;
+   left: -30px;
+   width: 700px;
+   height: 500px;
+   z-index: 100;
+}
+
+#v-meter li {
+   position: relative;
+   left: -11px;
+   height: 100px;
+   border-bottom: solid 1px #1785a7;
+}
+
+#v-meter li::before {
+   content: '';
+   position: absolute;
+   top: -15px;
+   left: -30px;
+   height: 100%;
+   border-bottom: solid 1px #1785a7;
+   transform: skewY(45deg) !important;
+   width: 30px;
+}
+
+#v-meter li div {
+   position: absolute;
+   width: 80px;
+   font-size: 17px !important;
+   left: -115px;
+   padding-top: 55px;
+   color: rgb(241, 102, 102);
+   text-align: right;
+}
+
+.bar {
+   width: 50px;
+   height: 32%;
+   background: rgb(243, 192, 148);
+   position: absolute;
+   left: 10%;
+   bottom: 5px;
+   z-index: 1000;
+   margin: 0 40px;
+}
+
+.bar::after {
+   content: '';
+   width: 50px;
+   height: 20px;
+   background: rgb(238, 196, 159);
+   position: absolute;
+   top: -20px;
+   left: -10px;
+   transform: skewX(45deg);
+}
+
+.bar::before {
+   content: '';
+   width: 20px;
+   height: 100%;
+   background: rgb(243, 198, 158);
+   position: absolute;
+   top: -10px;
+   left: -20px;
+   transform: skewY(45deg);
+}
+
+.two {
+   left: 25%;
+   height: 55%;
+}
+
+.three {
+   left: 40%;
+   height: 79%;
+}
+
+.four {
+   left: 55%;
+   height: 89%;
+}
+
+.five {
+   left: 70%;
+   height: 69%;
+}
+</style>--}}
+
+
+
+
+{{--<style>
+    /* FOR HOVERING BARS*/
+
+    *{
+  margin:0;
+  padding:0;
+  }
+body{
+  background:rgb(245, 244, 244);
+}
+                  /*STYLE FOR CONTAINER*/
+#container{
+  background:rgb(250, 248, 248);
+  width:80vw;
+  height:80vh;
+  margin: 50vh auto;
+  border-radius:20px;
+  display:flex;
+  overflow:hidden;
+  position:relative;
+}
+/*STYLE FOR BARS*/
+.bar{
+
+    /*MAKING BARS*/
+  width:10vw;
+  height:80px;
+  background:#c3e4f3;
+  margin:10px;
+  margin-bottom:0px;
+  border-radius:15px 15px 0 0 ;
+
+           /*DIRECTING BARS TO LEFT*/
+   float:left;
+
+          /*POSITIONING BARS TO BOTTOM*/
+   margin-top:auto;
+  position:relative;
+
+
+}
+
+    /*BAR CHART RISING*/
+
+#container:hover .bar:nth-child(1){
+  background:rgb(243, 157, 243);
+  transition: linear 1.5s;
+  height:250px;
+  }
+                /*HOVER EFFECT FOR BARS*/
+
+#container:hover .bar:nth-child(2){
+  background:rgb(241, 200, 241);
+  transition: linear 1.5s;
+  height:300px;
+    box-shadow: 5px 30px 8px  #5D4037;
+  }
+#container:hover .bar:nth-child(3){
+  background:rgb(241, 200, 241);
+  transition: linear 1.5s;
+  height:250px;
+  box-shadow: 5px 30px 8px  #5D4037;
+  }
+#container:hover .bar:nth-child(4){
+  background:rgb(241, 200, 241);
+  transition: linear 1.5s;
+  height:190px;
+  }
+#container:hover .bar:nth-child(5){
+  background:rgb(241, 200, 241);
+  transition: linear 1.5s;
+  height:260px;
+  box-shadow: 5px 30px 8px  #5D4037;
+  }
+#container:hover .bar:nth-child(6){
+  background:rgb(241, 200, 241);
+  transition: linear 1.5s;
+  height:340px;
+  box-shadow: 5px 30px 8px  #5D4037;
+  }
+#container:hover .bar:nth-child(7){
+  background:rgb(241, 200, 241);
+  transition: linear 1.5s;
+  height:300px;
+  box-shadow: 5px 30px 8px  #5D4037;
+  }
+
+                  /*STYLE FOR HEADING*/
+#head{
+  color:peru;
+  white-space:nowrap;
+  position:absolute;
+  background:rgb(247, 243, 247);
+  font-size:2.2em;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow:2px 2px 3px lavender;
+  /*display:none;*/
+  opacity: 0;
+}
+              /*HOVER EFFECT FOR HEADING*/
+
+#container:hover #head{
+ /* display:block;*/
+  opacity: 1;
+  transition: linear 1s;
+
+}
+
+/*Tramsition types- linear, ease, ease-in, ease-out, ease-in-out, steps, cubic*/
+
+                /*STYLE FOR PARAGRAPH(SHOWING %)*/
+.para{
+   text-align:center;
+  color:white;
+  font-size:1em;
+  font-weight:bold;
+  padding-top:10px;
+  opacity:0;
+}
+                /*HOVER EFFECT FOR PARAGRAPH*/
+
+#container:hover .para{
+  opacity:1;
+  transition: ease-in 800ms;
+}
+</style>--}}
+
+
+
+<STYLE>
+    .wrapper {
+      display: flex;
+      padding: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer; /* Make it clear that the wrapper is clickable */
+    }
+
+    .menu-item {
+      width: 150px;
+      max-height: 100px;
+      background-color: darkslateblue;
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      padding: 8px;
+      margin-bottom: 4px;
+
+      transform-origin: 0 0;
+      transform: translateX(-100px);
+      opacity: 0;
+
+      transition-property: transform, opacity;
+      transition-duration: 1s;
+      transition-timing-function: ease;
+    }
+
+    .wrapper:focus-within .menu-item {
+      transform: translateX(0);
+      opacity: 100%;
+    }
+
+    .wrapper .menu-item:nth-of-type(1) {
+      transition-delay: 0ms;
+    }
+
+    .wrapper .menu-item:nth-of-type(2) {
+      transition-delay: 100ms;
+    }
+
+    .wrapper .menu-item:nth-of-type(3) {
+      transition-delay: 200ms;
+    }
+
+    .wrapper .menu-item:nth-of-type(4) {
+      transition-delay: 300ms;
+    }
+
+    .wrapper .menu-item:nth-of-type(5) {
+      transition-delay: 400ms;
+    }
+
+    .wrapper p {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    /* Decorative styles */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .wrapper:focus-within {
+      outline: none; /* Remove focus outline */
+    }
+    </STYLE>
+
+
+
+
+
+
+
 
 <body>
-  <div class="card chart-container">
+<div class="container">
+
+<h1> Click here!</h1>
+</div>
+
+
+
+
+
+
+<!--  <div class="card chart-container">
     <canvas id="chart"></canvas>
   </div>
 
 
-
-
-<!--<script>
+    <script>
       const ctx = document.getElementById("chart").getContext('2d');
       const myChart = new Chart(ctx, {
         type: 'line',
@@ -329,8 +701,7 @@
         });
     </script>-->
 
-    <canvas id="studentChart" width="800" height="80"></canvas>
-
+    {{--<canvas id="studentChart" width="800" height="80"></canvas>
     <div class="content" width="100">
 
         <button id="download_Btn">
@@ -441,7 +812,7 @@
 
 
         </script>
-    </div>
+    </div>--}}
 
 
 
@@ -612,16 +983,76 @@
             });
     </script>-->
 
+<!-- Graph bar for 3D Graph -->
+    {{--<div class="container">
+
+            <!-- Bar one -->
+            <div class="bar one"></div>
+            <!-- Bar two -->
+            <div class="bar two"></div>
+            <!-- Bar three -->
+            <div class="bar three"></div>
+            <div class="bar four"></div>
+            <div class="bar five"></div>
 
 
+            <!-- Using the id="v-meter" -->
+            <ul id="v-meter">
+            <li><div>20m</div></li>
+            <li><div>15m</div></li>
+            <li><div>10m</div></li>
+            <li><div>5m</div></li>
+            <li><div>1m</div></li>
+            </ul>
+   </div>--}}
+
+
+
+
+
+<!--CONTAINER FOR GRAPHS-->
+   {{-- <div id="container" height="800" width="100">
+    <!--HEADING-->
+      <h1 id="head">Our Profits In 2019</h1>
+    <!--BARS FOR GRAPH-->
+      <div class="bar"><p class="para">60%</p></div>
+      <div class="bar"><p class="para">40%</p></div>
+      <div class="bar"><p class="para">20%</p></div>
+      <div class="bar"><p class="para">50%</p></div>
+      <div class="bar"><p class="para">90%</p></div>
+      <div class="bar"><p class="para">75%</p></div>
+
+    </div>--}}
+
+    <div class="wrapper" tabindex="0">
+        <button class="menu-item">Menu Item 1</button>
+        <button class="menu-item">Menu Item 2</button>
+        <button class="menu-item">Menu Item 3</button>
+        <button class="menu-item">Menu Item 4</button>
+        <button class="menu-item">Menu Item 5</button>
+      </div>
+
+
+
+      <div class="modal-div-canvas js-chart">
+        <div class="chart-canvas">
+           <canvas id="openedCanvas" width="1" height="1"></canvas>
+              <div class="chart-background"></div>
+                  <span class="chart-unique-value">
+                       <span class="js-count">
+                          85
+                       </span>
+                       <span class="cuv-percent">%</span>
+                  </span>
+              </div>
+        </div>
+<script>
 
 
 
 <!--datalebels plugin-->
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ mix('js/chart.js') }}"></script>
 

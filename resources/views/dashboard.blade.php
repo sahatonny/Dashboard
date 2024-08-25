@@ -106,31 +106,46 @@
     </section>
 
 
-    <script>
-        const ctx = document.getElementById("chart").getContext('2d');
-        const myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ["rice", "yam", "tomato", "potato",
-            "beans", "maize", "oil"],
-            datasets: [{
-              label: 'food Items',
-              backgroundColor: 'rgba(161, 198, 247, 1)',
-              borderColor: 'rgb(47, 128, 237)',
-              data: [300, 400, 200, 500, 800, 900, 200],
-            }]
-          },
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-                }
-              }]
-            }
-          },
-        });
-  </script>
+
+    <style>
+.donut-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.donut {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 8px solid #08a00d;
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.donut::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.donut-label {
+    margin-top: 8px;
+    font-weight: bold;
+    color: #0c0c0c;
+    text-align: center;
+}
+
+    </style>
 
     <!-- Grades Section -->
     <section class="grades mb-5">
@@ -146,13 +161,23 @@
                             <div class="d-flex flex-column">
                                 <h5 class="mb-1">{{ $grade['course'] }}</h5>
                             </div>
-                            <span class="badge bg-success rounded-pill">{{ $grade['grade'] }}</span>
+                            <div class="donut-container">
+                                <div class="donut"></div>
+                                <div class="donut-label">{{ $grade['grade'] }}</div>
+                            </div>
+
+                            <!--<span class="badge bg-success donut">{{ $grade['grade'] }}</span>-->
                         </li>
                     @endforeach
                 </ul>
             </div>
         </div>
     </section>
+
+
+
+
+
 
 
 
@@ -222,11 +247,15 @@
 </div>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.bundle.min.js"></script>
+
 
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
 
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
      <!-- Logout Section
      <section class="logout mt-5">
